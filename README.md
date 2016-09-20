@@ -9,7 +9,8 @@ Turn Wi-Fi ON/OFF toggler!
 ## TODO
 1. Menu bar App化
     - https://www.raywenderlich.com/98178/os-x-tutorial-menus-popovers-menu-bar-apps
-    - アイコン作成
+    - story boardの削除
+        - http://codefromabove.com/2014/09/xcode-6-removing-storyboards-and-creating-useful-empty-projects/
     - Menu barにアイコン表示
     - command + Qで消えないGUI
     - Windowに設定表示
@@ -22,20 +23,4 @@ Turn Wi-Fi ON/OFF toggler!
     - その解除
 
 ## DONE & LOG
-1. cocoapodsのインストール
-1. cocoapodsで[Magnet](https://github.com/Clipy/Magnet)を導入
-    - http://qiita.com/ShinokiRyosei/items/3090290cb72434852460
-1. cocoapodsとxcode8の問題
-    - http://qiita.com/Hakota/items/4a5e9201c7dc17e9017a
-1. Magnetの問題
-    - https://developer.apple.com/reference/appkit/nseventmodifierflags
-    - Alternateはコメント化
-    - それをやって"git reset --hard HEAD"(xcode init)をやったらなおった？
-    - import cocoaが死んでる
-    - Testx8というプロジェクトを立ち上げて再現してみるとUse of undeclared type 'Notification'と怒られる
-    - 諦めてxcode7をインストール
-1. Magnetを用いてxcode projectを立ち上げ
-1. 一般ショートカットのテスト
-1. シェルコマンドの実行
-    - http://qiita.com/kitanoow/items/8b551a2d121ff95ef553
-1. WiFiToggle.shの作成&ショートカットテスト
+1. アイコン作成
