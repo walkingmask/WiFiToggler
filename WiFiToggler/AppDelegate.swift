@@ -14,7 +14,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var window: NSWindow!
 
-
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // ⌘ + Shift + F5
         guard let keyCombo = KeyCombo(keyCode: 96, cocoaModifiers: [.CommandKeyMask, .ShiftKeyMask]) else { return }
@@ -28,15 +27,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(aNotification: NSNotification) {
         HotKeyCenter.sharedCenter.unregisterAll()
     }
-    
+
     func tappedHotKey() {
         let cmd:String = "/bin/bash"
         let task:NSTask = NSTask()
         task.launchPath = cmd
-        task.arguments  = ["/Users/walkingmask/src/peep/peep.sh"]
+        task.arguments  = ["/Users/walkingmask/Developments/WiFiToggler/WiFiToggle.sh"]
         task.launch()
         //print("hotKey!!!!")
     }
-
 }
 
