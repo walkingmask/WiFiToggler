@@ -30,26 +30,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // status menu settings
         let menu = NSMenu()
         // Turn Wi-Fi Off
-        menu.addItem(NSMenuItem(title: "Turn Wi-Fi Off (⌘⇧F5)", action: #selector(AppDelegate.turnWiFiOff), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Turn Wi-Fi Off (⇧F5)", action: #selector(AppDelegate.turnWiFiOff), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separatorItem())
         // Turn Wi-Fi On
-        menu.addItem(NSMenuItem(title: "Turn Wi-Fi On  (⌘⇧F6)", action: #selector(AppDelegate.turnWiFiOn), keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "Turn Wi-Fi On  (⇧F6)", action: #selector(AppDelegate.turnWiFiOn), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separatorItem())
         // Quit
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.terminate), keyEquivalent: ""))
         statusItem.menu = menu
         
         // hotkey settings
-        // Turn Wi-Fi Off (⌘ + Shift + F5)
-        guard let keyCombo1 = KeyCombo(keyCode: 96, cocoaModifiers: [.CommandKeyMask, .ShiftKeyMask]) else { return }
-        let hotKey1 = HotKey(identifier: "CommandShiftF5",
+        // Turn Wi-Fi Off (Shift + F5)
+        guard let keyCombo1 = KeyCombo(keyCode: 96, cocoaModifiers: [.ShiftKeyMask]) else { return }
+        let hotKey1 = HotKey(identifier: "ShiftF5",
                             keyCombo: keyCombo1,
                             target: self,
                             action: #selector(AppDelegate.turnWiFiOff))
         hotKey1.register()
-        // Turn Wi-Fi On (⌘ + Shift + F6)
-        guard let keyCombo2 = KeyCombo(keyCode: 97, cocoaModifiers: [.CommandKeyMask, .ShiftKeyMask]) else { return }
-        let hotKey2 = HotKey(identifier: "CommandShiftF6",
+        // Turn Wi-Fi On (Shift + F6)
+        guard let keyCombo2 = KeyCombo(keyCode: 97, cocoaModifiers: [.ShiftKeyMask]) else { return }
+        let hotKey2 = HotKey(identifier: "ShiftF6",
                             keyCombo: keyCombo2,
                             target: self,
                             action: #selector(AppDelegate.turnWiFiOn))
