@@ -19,7 +19,7 @@ Turn Wi-Fi ON/OFF toggler!
 
 ## DONE & LOG
 1. アイコン作成
-1. Menu bar App化
+1. status bar App化
     - https://www.raywenderlich.com/98178/os-x-tutorial-menus-popovers-menu-bar-apps
     1. ボタンへアイコン画像を適用
         - 32x32pxじゃないと表示されないっぽい
