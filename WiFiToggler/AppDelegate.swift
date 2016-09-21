@@ -19,6 +19,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        // login launch
+        setLaunchAtLoginEnabled(true)
 
         // status bar button settings
         if let button = statusItem.button {
@@ -56,6 +59,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         hotKey2.register()
     }
     
+    // execute turn wifi off shell script
     func turnWiFiOff() {
         let cmd:String = "/bin/bash"
         let task:NSTask = NSTask()
@@ -64,6 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         task.launch()
     }
     
+    // execute turn wifi on shell script
     func turnWiFiOn() {
         let cmd:String = "/bin/bash"
         let task:NSTask = NSTask()
@@ -72,12 +77,48 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         task.launch()
     }
     
+    // quit function
     func terminate(sender: AnyObject) {
         NSApplication.sharedApplication().terminate(self)
     }
-
     func applicationWillTerminate(aNotification: NSNotification) {
+        // release all registered hotkeys
         HotKeyCenter.sharedCenter.unregisterAll()
+    }
+    
+    // login launch settings
+    func setLaunchAtLoginEnabled(enabled: Bool) {
+        if !enabled { return }
+        
+        // get apple script filepath
+        let filename:String = enabled ? "AddLoginItem" : "DeleteLoginItem";
+        var template:String = ""
+        if let filePath = NSBundle.mainBundle().pathForResource(filename, ofType: "scpt") {
+            do {
+                template = try String(contentsOfFile: filePath,
+                                     encoding: NSUTF8StringEncoding)
+            }
+            catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        
+        // get app name
+        var source:String = ""
+        let localizedName:String = NSRunningApplication.currentApplication().localizedName!
+        if enabled {
+            let bundlePath:String = NSBundle.mainBundle().bundlePath
+            source = String(format: template, bundlePath, localizedName)
+        }
+        
+        // run apple script
+        var error:NSDictionary?
+        if let script = NSAppleScript(source: source) {
+            script.executeAndReturnError(&error)
+            if error != nil {
+                print(error)
+            }
+        }
     }
 }
 

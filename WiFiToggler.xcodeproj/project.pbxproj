@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		166F90535B0A41D3EC640494 /* Pods_WiFiToggler.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC0EB05C214A5FB3C69CB5E /* Pods_WiFiToggler.framework */; };
+		2E040E391D9293C900C1E58B /* AddLoginItem.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 2E040E371D9293C900C1E58B /* AddLoginItem.scpt */; };
+		2E040E3A1D9293C900C1E58B /* DeleteLoginItem.scpt in Resources */ = {isa = PBXBuildFile; fileRef = 2E040E381D9293C900C1E58B /* DeleteLoginItem.scpt */; };
 		2E3087471D9264EF00A080C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3087461D9264EF00A080C6 /* AppDelegate.swift */; };
 		2E3087491D9264EF00A080C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E3087481D9264EF00A080C6 /* Assets.xcassets */; };
 		2E30874C1D9264EF00A080C6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E30874A1D9264EF00A080C6 /* MainMenu.xib */; };
@@ -16,6 +18,8 @@
 /* Begin PBXFileReference section */
 		1A2760EAA8D1A5F93E4CD2C9 /* Pods-WiFiToggler.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WiFiToggler.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WiFiToggler/Pods-WiFiToggler.debug.xcconfig"; sourceTree = "<group>"; };
 		1AC0EB05C214A5FB3C69CB5E /* Pods_WiFiToggler.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WiFiToggler.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E040E371D9293C900C1E58B /* AddLoginItem.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = AddLoginItem.scpt; path = src/AddLoginItem.scpt; sourceTree = SOURCE_ROOT; };
+		2E040E381D9293C900C1E58B /* DeleteLoginItem.scpt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = DeleteLoginItem.scpt; path = src/DeleteLoginItem.scpt; sourceTree = SOURCE_ROOT; };
 		2E3087431D9264EF00A080C6 /* WiFiToggler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WiFiToggler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E3087461D9264EF00A080C6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E3087481D9264EF00A080C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 				2E3087481D9264EF00A080C6 /* Assets.xcassets */,
 				2E30874A1D9264EF00A080C6 /* MainMenu.xib */,
 				2E30874D1D9264EF00A080C6 /* Info.plist */,
+				2E040E371D9293C900C1E58B /* AddLoginItem.scpt */,
+				2E040E381D9293C900C1E58B /* DeleteLoginItem.scpt */,
 			);
 			path = WiFiToggler;
 			sourceTree = "<group>";
@@ -143,8 +149,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E040E391D9293C900C1E58B /* AddLoginItem.scpt in Resources */,
 				2E3087491D9264EF00A080C6 /* Assets.xcassets in Resources */,
 				2E30874C1D9264EF00A080C6 /* MainMenu.xib in Resources */,
+				2E040E3A1D9293C900C1E58B /* DeleteLoginItem.scpt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
