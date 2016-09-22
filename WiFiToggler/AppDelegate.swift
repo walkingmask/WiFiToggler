@@ -34,9 +34,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let menu = NSMenu()
         // Turn Wi-Fi Off
         menu.addItem(NSMenuItem(title: "Turn Wi-Fi Off (⇧F5)", action: #selector(AppDelegate.turnWiFiOff), keyEquivalent: ""))
-        menu.addItem(NSMenuItem.separatorItem())
         // Turn Wi-Fi On
         menu.addItem(NSMenuItem(title: "Turn Wi-Fi On  (⇧F6)", action: #selector(AppDelegate.turnWiFiOn), keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separatorItem())
+        // Ingest halcyon
+        menu.addItem(NSMenuItem(title: "Halcyon        (⇧F1)", action: #selector(AppDelegate.ingestHalcyon), keyEquivalent: ""))
+        // Ingest caffeine
+        menu.addItem(NSMenuItem(title: "Caffeine       (⇧F2)", action: #selector(AppDelegate.ingestCaffeine), keyEquivalent: ""))
         menu.addItem(NSMenuItem.separatorItem())
         // Quit
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.terminate), keyEquivalent: ""))
@@ -46,17 +50,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Turn Wi-Fi Off (Shift + F5)
         guard let keyCombo1 = KeyCombo(keyCode: 96, cocoaModifiers: [.ShiftKeyMask]) else { return }
         let hotKey1 = HotKey(identifier: "ShiftF5",
-                            keyCombo: keyCombo1,
-                            target: self,
-                            action: #selector(AppDelegate.turnWiFiOff))
+                             keyCombo: keyCombo1,
+                             target: self,
+                             action: #selector(AppDelegate.turnWiFiOff))
         hotKey1.register()
         // Turn Wi-Fi On (Shift + F6)
         guard let keyCombo2 = KeyCombo(keyCode: 97, cocoaModifiers: [.ShiftKeyMask]) else { return }
         let hotKey2 = HotKey(identifier: "ShiftF6",
-                            keyCombo: keyCombo2,
-                            target: self,
-                            action: #selector(AppDelegate.turnWiFiOn))
+                             keyCombo: keyCombo2,
+                             target: self,
+                             action: #selector(AppDelegate.turnWiFiOn))
         hotKey2.register()
+        // Ingest halcyon (Shift + F1)
+        guard let keyCombo3 = KeyCombo(keyCode: 122, cocoaModifiers: [.ShiftKeyMask]) else { return }
+        let hotKey3 = HotKey(identifier: "ShiftF1",
+                             keyCombo: keyCombo3,
+                             target: self,
+                             action: #selector(AppDelegate.ingestHalcyon))
+        hotKey3.register()
+        // Ingest caffeine (Shift + F2)
+        guard let keyCombo4 = KeyCombo(keyCode: 120, cocoaModifiers: [.ShiftKeyMask]) else { return }
+        let hotKey4 = HotKey(identifier: "ShiftF2",
+                             keyCombo: keyCombo4,
+                             target: self,
+                             action: #selector(AppDelegate.ingestCaffeine))
+        hotKey4.register()
     }
     
     // execute turn wifi off shell script
@@ -64,17 +82,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let cmd:String = "/bin/sh"
         let task:NSTask = NSTask()
         task.launchPath = cmd
-        var args:String = ""
-        if let filePath = NSBundle.mainBundle().pathForResource("src/WiFiToggle", ofType: "sh") {
-            do {
-                args = try String(contentsOfFile: filePath,
-                                      encoding: NSUTF8StringEncoding)
-            }
-            catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
-        task.arguments = ["-c", args]
+        let arg:String = "[[ \"`networksetup -getairportpower en0`\" =~ \"On\" ]] && networksetup -setairportpower en0 Off"
+        task.arguments = ["-c", arg]
         task.launch()
     }
     
@@ -83,17 +92,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let cmd:String = "/bin/sh"
         let task:NSTask = NSTask()
         task.launchPath = cmd
-        var args:String = ""
-        if let filePath = NSBundle.mainBundle().pathForResource("src/WiFiToggle", ofType: "sh") {
-            do {
-                args = try String(contentsOfFile: filePath,
-                                  encoding: NSUTF8StringEncoding)
-            }
-            catch let error as NSError {
-                print(error.localizedDescription)
-            }
-        }
-        task.arguments = ["-c", args]
+        let arg:String = "[[ \"`networksetup -getairportpower en0`\" =~ \"Off\" ]] && networksetup -setairportpower en0 On"
+        task.arguments = ["-c", arg]
+        task.launch()
+    }
+    
+    // execute caffeine shell script
+    func ingestCaffeine() {
+        let cmd:String = "/bin/sh"
+        let task:NSTask = NSTask()
+        task.launchPath = cmd
+        let sleeptime:Int = 18000
+        let arg:String = "[ \"`ps aux | grep \"/usr/bin/caffeinate -t \(sleeptime)\" | grep -v \"grep\"`\" ] && : || /usr/bin/caffeinate -t \(sleeptime) &"
+        task.arguments = ["-c", arg]
+        task.launch()
+    }
+    
+    // execute halcyon shell script
+    func ingestHalcyon() {
+        let cmd:String = "/bin/sh"
+        let task:NSTask = NSTask()
+        task.launchPath = cmd
+        let sleeptime:Int = 18000
+        let arg:String = "caffeinepid=`ps aux | grep \"/usr/bin/caffeinate -t \(sleeptime)\" | grep -v \"grep\" | tr -s \" \" | cut -d\" \" -f 2`; [ \"`echo $caffeinepid`\" ] && kill $caffeinepid"
+        task.arguments = ["-c", arg]
         task.launch()
     }
     
@@ -111,7 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if !enabled { return }
         
         // get apple script filepath
-        let filename:String = enabled ? "src/AddLoginItem" : "src/DeleteLoginItem";
+        let filename:String = enabled ? "scripts/scpt/AddLoginItem" : "scripts/scpt/DeleteLoginItem";
         var template:String = ""
         if let filePath = NSBundle.mainBundle().pathForResource(filename, ofType: "scpt") {
             do {

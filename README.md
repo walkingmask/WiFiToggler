@@ -37,15 +37,15 @@ Turn Wi-Fi On/Off toggler!
     - http://qiita.com/baba163/items/e2390c4529ec0448151d
 
 ## TODO
-- WiFiToggole.shの分割(TurnWiFiOn.sh, TurnWiFiOff.sh)
+1. menuのインデント揃え
+- caffeineを使っている時にアイコンをどうにかして動いてるのがわかるようにする
 - hotkey登録設定(KeyHolder)
 - sleep前に起動してWiFiを切る/sleep復帰時に起動してWiFiを入れる
-- caffeinater機能
-    - ショートカットで自動スリープ防止
-    - その解除
 
 ## DONE & LOG
 1. スクリプトの実行コマンドとパスの修正
     - http://nakajijapan.github.io/blog/2014/07/11/xcode-folder-references/
     - http://d.hatena.ne.jp/Watson/20100324/1269427861
 1. READMEのアップデート(installにpod installを追加)
+1. シェルスクリプトファイルを削除してコードに直書き
+1. caffeinateを使った自動スリープ防止を試験導入

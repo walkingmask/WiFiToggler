@@ -11,7 +11,7 @@
 		2E3087471D9264EF00A080C6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3087461D9264EF00A080C6 /* AppDelegate.swift */; };
 		2E3087491D9264EF00A080C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E3087481D9264EF00A080C6 /* Assets.xcassets */; };
 		2E30874C1D9264EF00A080C6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E30874A1D9264EF00A080C6 /* MainMenu.xib */; };
-		2E7D42DD1D931F9B003EF4C9 /* src in Resources */ = {isa = PBXBuildFile; fileRef = 2E7D42DC1D931F9B003EF4C9 /* src */; };
+		2E5FC4F51D93B7BC0001C65E /* scripts in Resources */ = {isa = PBXBuildFile; fileRef = 2E5FC4F41D93B7BC0001C65E /* scripts */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,7 +22,7 @@
 		2E3087481D9264EF00A080C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2E30874B1D9264EF00A080C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2E30874D1D9264EF00A080C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2E7D42DC1D931F9B003EF4C9 /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = SOURCE_ROOT; };
+		2E5FC4F41D93B7BC0001C65E /* scripts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = scripts; sourceTree = SOURCE_ROOT; };
 		F69D6E316543CF291F8D7664 /* Pods-WiFiToggler.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WiFiToggler.release.xcconfig"; path = "Pods/Target Support Files/Pods-WiFiToggler/Pods-WiFiToggler.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -63,7 +63,7 @@
 				2E3087481D9264EF00A080C6 /* Assets.xcassets */,
 				2E30874A1D9264EF00A080C6 /* MainMenu.xib */,
 				2E30874D1D9264EF00A080C6 /* Info.plist */,
-				2E7D42DC1D931F9B003EF4C9 /* src */,
+				2E5FC4F41D93B7BC0001C65E /* scripts */,
 			);
 			path = WiFiToggler;
 			sourceTree = "<group>";
@@ -146,7 +146,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E7D42DD1D931F9B003EF4C9 /* src in Resources */,
+				2E5FC4F51D93B7BC0001C65E /* scripts in Resources */,
 				2E3087491D9264EF00A080C6 /* Assets.xcassets in Resources */,
 				2E30874C1D9264EF00A080C6 /* MainMenu.xib in Resources */,
 			);
