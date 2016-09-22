@@ -25,25 +25,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         // status bar button settings
         if let button = statusItem.button {
-            let img = NSImage(named: "iconblack")
+            let img = NSImage(named: "statusbaricon")
             img?.template = true
             button.image = img
         }
         
         // status menu settings
         let menu = NSMenu()
+        
         // Turn Wi-Fi Off
-        menu.addItem(NSMenuItem(title: "Turn Wi-Fi Off (⇧F5)", action: #selector(AppDelegate.turnWiFiOff), keyEquivalent: ""))
+        let menuitem1:NSMenuItem = NSMenuItem(title: "Turn Wi-Fi Off", action: #selector(AppDelegate.turnWiFiOff), keyEquivalent: String(utf16CodeUnits: [unichar(NSF5FunctionKey)], count: 1))
+        menuitem1.keyEquivalentModifierMask = Int(NSEventModifierFlags.ShiftKeyMask.rawValue)
+        menu.addItem(menuitem1)
+        
         // Turn Wi-Fi On
-        menu.addItem(NSMenuItem(title: "Turn Wi-Fi On  (⇧F6)", action: #selector(AppDelegate.turnWiFiOn), keyEquivalent: ""))
+        let menuitem2:NSMenuItem = NSMenuItem(title: "Turn Wi-Fi On", action: #selector(AppDelegate.turnWiFiOn), keyEquivalent: String(utf16CodeUnits: [unichar(NSF6FunctionKey)], count: 1))
+        menuitem2.keyEquivalentModifierMask = Int(NSEventModifierFlags.ShiftKeyMask.rawValue)
+        menu.addItem(menuitem2)
+        
+        // seoarator1
         menu.addItem(NSMenuItem.separatorItem())
+        
         // Ingest halcyon
-        menu.addItem(NSMenuItem(title: "Halcyon        (⇧F1)", action: #selector(AppDelegate.ingestHalcyon), keyEquivalent: ""))
+        let menuitem3:NSMenuItem = NSMenuItem(title: "Halcyon", action: #selector(AppDelegate.ingestHalcyon), keyEquivalent: String(utf16CodeUnits: [unichar(NSF1FunctionKey)], count: 1))
+        menuitem3.keyEquivalentModifierMask = Int(NSEventModifierFlags.ShiftKeyMask.rawValue)
+        menu.addItem(menuitem3)
+        
         // Ingest caffeine
-        menu.addItem(NSMenuItem(title: "Caffeine       (⇧F2)", action: #selector(AppDelegate.ingestCaffeine), keyEquivalent: ""))
+        let menuitem4:NSMenuItem = NSMenuItem(title: "Caffeine", action: #selector(AppDelegate.ingestCaffeine), keyEquivalent: String(utf16CodeUnits: [unichar(NSF2FunctionKey)], count: 1))
+        menuitem4.keyEquivalentModifierMask = Int(NSEventModifierFlags.ShiftKeyMask.rawValue)
+        menu.addItem(menuitem4)
+        
+        // separator2
         menu.addItem(NSMenuItem.separatorItem())
+        
         // Quit
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(AppDelegate.terminate), keyEquivalent: ""))
+        
         statusItem.menu = menu
         
         // hotkey settings
@@ -54,6 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                              target: self,
                              action: #selector(AppDelegate.turnWiFiOff))
         hotKey1.register()
+        
         // Turn Wi-Fi On (Shift + F6)
         guard let keyCombo2 = KeyCombo(keyCode: 97, cocoaModifiers: [.ShiftKeyMask]) else { return }
         let hotKey2 = HotKey(identifier: "ShiftF6",
@@ -61,6 +80,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                              target: self,
                              action: #selector(AppDelegate.turnWiFiOn))
         hotKey2.register()
+        
         // Ingest halcyon (Shift + F1)
         guard let keyCombo3 = KeyCombo(keyCode: 122, cocoaModifiers: [.ShiftKeyMask]) else { return }
         let hotKey3 = HotKey(identifier: "ShiftF1",
@@ -68,6 +88,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                              target: self,
                              action: #selector(AppDelegate.ingestHalcyon))
         hotKey3.register()
+        
         // Ingest caffeine (Shift + F2)
         guard let keyCombo4 = KeyCombo(keyCode: 120, cocoaModifiers: [.ShiftKeyMask]) else { return }
         let hotKey4 = HotKey(identifier: "ShiftF2",
@@ -75,6 +96,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                              target: self,
                              action: #selector(AppDelegate.ingestCaffeine))
         hotKey4.register()
+    }
+    
+    // must reset all settings
+    func applicationWillTerminate(aNotification: NSNotification) {
+        // release all registered hotkeys
+        HotKeyCenter.sharedCenter.unregisterAll()
+        ingestHalcyon()
     }
     
     // execute turn wifi off shell script
@@ -106,6 +134,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let arg:String = "[ \"`ps aux | grep \"/usr/bin/caffeinate -t \(sleeptime)\" | grep -v \"grep\"`\" ] && : || /usr/bin/caffeinate -t \(sleeptime) &"
         task.arguments = ["-c", arg]
         task.launch()
+        
+        // change status bar icon
+        if let button = statusItem.button {
+            let img = NSImage(named: "cafficon")
+            img?.template = true
+            button.image = img
+        }
     }
     
     // execute halcyon shell script
@@ -117,15 +152,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let arg:String = "caffeinepid=`ps aux | grep \"/usr/bin/caffeinate -t \(sleeptime)\" | grep -v \"grep\" | tr -s \" \" | cut -d\" \" -f 2`; [ \"`echo $caffeinepid`\" ] && kill $caffeinepid"
         task.arguments = ["-c", arg]
         task.launch()
+        // change status bar icon
+        if let button = statusItem.button {
+            button.image = NSImage(named: "statusbaricon")
+        }
     }
     
     // quit function
     func terminate(sender: AnyObject) {
         NSApplication.sharedApplication().terminate(self)
-    }
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // release all registered hotkeys
-        HotKeyCenter.sharedCenter.unregisterAll()
     }
     
     // login launch settings

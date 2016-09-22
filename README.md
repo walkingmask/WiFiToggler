@@ -5,6 +5,7 @@ Turn Wi-Fi On/Off toggler!
 ## Function
 
 - Turn Wi-Fi On/Off with hotkey in anywhere
+- Prevent auto sleep with hotkey (experimentally)
 - Launch at login
 
 ## Environment
@@ -23,29 +24,37 @@ Turn Wi-Fi On/Off toggler!
 1. Product -> Archive
 1. Export -> Export as a Mac Application
 1. Open the directory and Move "WiFiToggler.app" to /Application
+1. Remove empty directory
 
 ## How to use
 
 1. Launch app
 1. Press hotkey
-    - Turn Wi-Fi Off : ⇧ + F5
-    - Turn Wi-Fi On  : ⇧ + F6
+    - Turn Wi-Fi Off  : ⇧ + F5
+    - Turn Wi-Fi On   : ⇧ + F6
+    - Ingest halcyon  : ⇧ + F1 (experimentally)
+    - Ingest caffeine : ⇧ + F2 (experimentally)
 1. Quit via status bar icon
+
+## Uninstall
+
+1. Remove items below
+    - /Application/WiFiToggler.app
+    - $HOME/Library/Developer/Xcode/DerivedData/ModuleCache (Option)
+    - $HOME/Library/Developer/Xcode/DerivedData/WiFiToggler-* (Option)
 
 ## Note
 1. Macのkeycode
     - http://qiita.com/baba163/items/e2390c4529ec0448151d
 
 ## TODO
-1. menuのインデント揃え
-- caffeineを使っている時にアイコンをどうにかして動いてるのがわかるようにする
 - hotkey登録設定(KeyHolder)
 - sleep前に起動してWiFiを切る/sleep復帰時に起動してWiFiを入れる
+    - sleep/sleep解除の探知
 
 ## DONE & LOG
-1. スクリプトの実行コマンドとパスの修正
-    - http://nakajijapan.github.io/blog/2014/07/11/xcode-folder-references/
-    - http://d.hatena.ne.jp/Watson/20100324/1269427861
-1. READMEのアップデート(installにpod installを追加)
 1. シェルスクリプトファイルを削除してコードに直書き
 1. caffeinateを使った自動スリープ防止を試験導入
+1. menuのインデント揃え
+1. caffeineを使っている時にアイコンをどうにかして動いてるのがわかるようにする v1.2
+1. READMEの更新(Hotkeyの追加、Uninstall)
