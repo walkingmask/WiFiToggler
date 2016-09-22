@@ -16,6 +16,9 @@ Turn Wi-Fi On/Off toggler!
 
 ## Install
 
+1. git clone https://github.com/walkingmask/WiFiToggler.git
+1. cd WiFiToggler
+1. pod install
 1. open "WiFiToggler.xcworkspace"
 1. Product -> Archive
 1. Export -> Export as a Mac Application
@@ -42,5 +45,7 @@ Turn Wi-Fi On/Off toggler!
     - その解除
 
 ## DONE & LOG
-1. PC起動(ログイン)時に起動させる
-    - http://questbeat.hatenablog.jp/entry/2014/04/19/123207
+1. スクリプトの実行コマンドとパスの修正
+    - http://nakajijapan.github.io/blog/2014/07/11/xcode-folder-references/
+    - http://d.hatena.ne.jp/Watson/20100324/1269427861
+1. READMEのアップデート(installにpod installを追加)

@@ -61,19 +61,39 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // execute turn wifi off shell script
     func turnWiFiOff() {
-        let cmd:String = "/bin/bash"
+        let cmd:String = "/bin/sh"
         let task:NSTask = NSTask()
         task.launchPath = cmd
-        task.arguments  = ["/Users/walkingmask/Developments/WiFiToggler/src/WiFiToggle.sh"]
+        var args:String = ""
+        if let filePath = NSBundle.mainBundle().pathForResource("src/WiFiToggle", ofType: "sh") {
+            do {
+                args = try String(contentsOfFile: filePath,
+                                      encoding: NSUTF8StringEncoding)
+            }
+            catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        task.arguments = ["-c", args]
         task.launch()
     }
     
     // execute turn wifi on shell script
     func turnWiFiOn() {
-        let cmd:String = "/bin/bash"
+        let cmd:String = "/bin/sh"
         let task:NSTask = NSTask()
         task.launchPath = cmd
-        task.arguments  = ["/Users/walkingmask/Developments/WiFiToggler/src/WiFiToggle.sh"]
+        var args:String = ""
+        if let filePath = NSBundle.mainBundle().pathForResource("src/WiFiToggle", ofType: "sh") {
+            do {
+                args = try String(contentsOfFile: filePath,
+                                  encoding: NSUTF8StringEncoding)
+            }
+            catch let error as NSError {
+                print(error.localizedDescription)
+            }
+        }
+        task.arguments = ["-c", args]
         task.launch()
     }
     
@@ -91,7 +111,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if !enabled { return }
         
         // get apple script filepath
-        let filename:String = enabled ? "AddLoginItem" : "DeleteLoginItem";
+        let filename:String = enabled ? "src/AddLoginItem" : "src/DeleteLoginItem";
         var template:String = ""
         if let filePath = NSBundle.mainBundle().pathForResource(filename, ofType: "scpt") {
             do {
