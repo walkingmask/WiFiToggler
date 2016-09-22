@@ -131,7 +131,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let task:NSTask = NSTask()
         task.launchPath = cmd
         let sleeptime:Int = 18000
-        let arg:String = "[ \"`ps aux | grep \"/usr/bin/caffeinate -t \(sleeptime)\" | grep -v \"grep\"`\" ] && : || /usr/bin/caffeinate -t \(sleeptime) &"
+        let arg:String = "[ \"`ps aux | grep \"/usr/bin/caffeinate -u -t \(sleeptime)\" | grep -v \"grep\"`\" ] && : || /usr/bin/caffeinate -u -t \(sleeptime) &"
         task.arguments = ["-c", arg]
         task.launch()
         
@@ -149,7 +149,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let task:NSTask = NSTask()
         task.launchPath = cmd
         let sleeptime:Int = 18000
-        let arg:String = "caffeinepid=`ps aux | grep \"/usr/bin/caffeinate -t \(sleeptime)\" | grep -v \"grep\" | tr -s \" \" | cut -d\" \" -f 2`; [ \"`echo $caffeinepid`\" ] && kill $caffeinepid"
+        let arg:String = "caffeinepid=`ps aux | grep \"/usr/bin/caffeinate -u -t \(sleeptime)\" | grep -v \"grep\" | tr -s \" \" | cut -d\" \" -f 2`; [ \"`echo $caffeinepid`\" ] && kill $caffeinepid"
         task.arguments = ["-c", arg]
         task.launch()
         // change status bar icon

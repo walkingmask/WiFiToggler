@@ -48,13 +48,11 @@ Turn Wi-Fi On/Off toggler!
     - http://qiita.com/baba163/items/e2390c4529ec0448151d
 
 ## TODO
+1. blog書く(MenuのkeyEquivalentにfunctionkeyを登録する方法など)
 - hotkey登録設定(KeyHolder)
 - sleep前に起動してWiFiを切る/sleep復帰時に起動してWiFiを入れる
     - sleep/sleep解除の探知
+- 名前を"Toggler"に変更？
 
 ## DONE & LOG
-1. シェルスクリプトファイルを削除してコードに直書き
-1. caffeinateを使った自動スリープ防止を試験導入
-1. menuのインデント揃え
-1. caffeineを使っている時にアイコンをどうにかして動いてるのがわかるようにする v1.2
-1. READMEの更新(Hotkeyの追加、Uninstall)
+1. caffeinateのオプションを修正(-uの追加)
