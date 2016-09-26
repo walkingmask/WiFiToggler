@@ -48,7 +48,6 @@ Turn Wi-Fi On/Off toggler!
     - http://qiita.com/baba163/items/e2390c4529ec0448151d
 
 ## TODO
-1. blog書く(MenuのkeyEquivalentにfunctionkeyを登録する方法など)
 - hotkey登録設定(KeyHolder)
 - sleep前に起動してWiFiを切る/sleep復帰時に起動してWiFiを入れる
     - sleep/sleep解除の探知
